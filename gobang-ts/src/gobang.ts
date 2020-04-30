@@ -1,5 +1,5 @@
-import modal from "./packages/modal"
-import { getElement } from './tools'
+import modal from "@/packages/modal"
+import { getElement } from '@/tools'
 
 type PointArray = Point[]
 
@@ -17,9 +17,7 @@ class GoBang{
 
     constructor(tag: string){
         this.container = tag
-        this.initState()
-        this.initBoard()
-        this.initEvent()
+        this.init()
     }
 
     private init() {
@@ -41,8 +39,8 @@ class GoBang{
     }
 
     private initBoard() {
-        const container = getElement(this.container),
-            boardDOM = document.createDocumentFragment()
+        const container: HTMLElement = getElement(this.container),
+            boardDOM: DocumentFragment = document.createDocumentFragment()
 
         container.innerHTML = ''
 

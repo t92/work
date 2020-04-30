@@ -1,9 +1,17 @@
 import './modal.css'
-import { getElement } from '../../../tools'
+import { getElement } from '@/tools'
 
 type CallBack = () => void
+
+interface ModalConfig{
+    title?: string,
+    type?: string,
+    message?: string,
+    mask?: boolean
+}
+
 class Modal{
-    options: any = {
+    options: ModalConfig = {
         title: '通知',
         type: 'info',
         message: 'this is a modal~',
@@ -20,7 +28,7 @@ class Modal{
         this.instance = this
     }
 
-    private showModal(options?: any){
+    private showModal(options?: ModalConfig){
 
         const opt =
             this.options = {
@@ -36,7 +44,7 @@ class Modal{
             modalDialog.classList.add('modal-mask_')
         }
 
-        const modalHTML =  `<div class="modal-wrapper_">
+        const modalHTML:string =  `<div class="modal-wrapper_">
                                 <div class="modal-header_">
                                     ${ opt.title }
                                 </div>
