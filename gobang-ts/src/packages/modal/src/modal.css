@@ -1,0 +1,32 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.modal-mask_{
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.2);
+    z-index: 99999;
+}
+
+.modal-wrapper_{
+    position: fixed;
+    padding: 10px;
+    left: 50%;
+    top: 50%;
+    width: 340px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    transform: translate(-50%, -100%);
+}
+
+.modal-header_{
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.modal-body_{
+    padding: 15px 10px;
+    font-size: 14px;
+}

@@ -1,0 +1,47 @@
+*{margin: 0; padding: 0;box-sizing: border-box;}
+.box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 50px auto;
+    width: 600px;
+    height: 600px;
+    background: rgb(213,176,146);
+    background-image:
+        linear-gradient(rgba(255,255,255,.3) 1px, transparent 0),
+        linear-gradient(rgba(255,255,255,.3) 1px, transparent 0),
+        linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 0),
+        linear-gradient(white 1px, transparent 0),
+        linear-gradient(90deg, white 1px, transparent 0);
+    background-size: 40px 40px;
+}
+
+.box div{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.empty{
+    background: transparent;
+}
+.white{
+    background:radial-gradient(15px 15px at 15px 15px,#fff,#e2e2e2);
+    box-shadow:2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.black{
+    background:radial-gradient(8px 8px at 25px 8px,#fff,#333);
+    box-shadow:2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.detail{
+    position: absolute;
+    left: 200px;
+}
+.play{
+    margin-bottom: 20px;
+}
