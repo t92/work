@@ -10,12 +10,12 @@ enum MessageType{
 
 class Message{
     type: string
-    body: string | undefined
+    body: any
     status: string
     code: number
 
     private msgData: object | undefined
-    constructor(type:string, body: string, status?: string){
+    constructor(type:string, body: any, status?: string){
 
         this.type = type
         this.body = body
@@ -44,11 +44,11 @@ class Message{
         }
     }
 
-    static errorMsg(body?: string): Message{
+    static errorMsg(body?: any): Message{
         return new Message(MessageType.SYS_MESSAGE, body || '消息格式错误!', 'fail')
     }
 
-    static successMsg(body?: string): Message{
+    static successMsg(body?: any): Message{
         return new Message(MessageType.SYS_MESSAGE, body || 'OK', 'success')
     }
 

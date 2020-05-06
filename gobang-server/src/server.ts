@@ -21,6 +21,7 @@ const createServer = (port: number) => {
         }
 
         user.joinGame(game, connection)
+        // 保存游戏 等待用户加入
         games.catch(game)
 
         console.log(`用户==(${params.user})==加入了`, games, game.getId())
@@ -33,19 +34,21 @@ const createServer = (port: number) => {
                 if(message) {
                     switch(message.type) {
                         case MessageType.TEXT_MESSAGE : {
+
+                            connection.sendText(Message.successMsg().toString())
                             break
                         }
 
                         case MessageType.ACTION_MESSAGE: {
-                            game.update(JSON.parse(message.body!) as Point)
+                            game.update(message.body)
                             break
                         }
 
                         case MessageType.HEART_MESSAGE: {
+                            connection.sendText(Message.successMsg().toString())
                             break
                         }
                     }
-                    connection.sendText(Message.successMsg().toString())
                 }else{
                     connection.sendText(Message.errorMsg().toString())
                 }

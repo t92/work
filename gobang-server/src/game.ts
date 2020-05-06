@@ -9,7 +9,7 @@ class Game{
     boards: Point[][] = []
     connects: any[] = [] // 保存socket通讯服务
     constructor() {
-        this.id = Date.now().toString()
+        this.id = '1588756428256' // Date.now().toString()
         this.initGame()
     }
 
@@ -33,19 +33,26 @@ class Game{
         return this.status === 'wating'
     }
 
-    update(point: Point) {
-        const [row, col] = point.getPosition()
-        const mfPoint = this.boards[row][col]
-        mfPoint.setType(point.getType())
+    update(point: any) {
 
-        this.notify(mfPoint)
+        const {
+            type,
+            position
+        } = point
+
+        if(type === 'empty'){
+            // 撤销操作
+        }
+        const [row, col] = position
+        const mfPoint = this.boards[row][col]
+        mfPoint.setType(type)
+
+        this.notify(new Message(MessageType.ACTION_MESSAGE, mfPoint))
     }
 
-    notify(msg: any) {
-        const body = typeof msg === 'string' ? msg : JSON.stringify(msg)
-
+    notify(msg: Message) {
         this.connects.forEach( conn => {
-            conn.sendText(new Message(MessageType.ACTION_MESSAGE, body).toString())
+            conn.sendText(msg.toString())
         })
     }
 
@@ -53,11 +60,12 @@ class Game{
         if(this.status !== 'wating') return
         this.connects.push(conn)
         if(this.from) {
-            this.to = user
+            this.to!.id = user.getId()
             this.status = 'pening'
-            this.notify('游戏开始')
+            this.notify(new Message(MessageType.SYS_MESSAGE, 'start'))
         } else {
             this.from = user
+            this.notify(new Message(MessageType.SYS_MESSAGE, 'await'))
         }
     }
 }
@@ -93,6 +101,9 @@ class User{
         this.id = `id:${name}`
     }
 
+    getId(): string{
+        return this.id
+    }
     joinGame(game: Game, conn) {
         game.addUser(this, conn)
     }
