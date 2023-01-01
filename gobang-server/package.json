@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/node": "^13.13.4",
     "nodejs-websocket": "^1.7.2",
-    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths": "^3.10.1",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3"
   },
